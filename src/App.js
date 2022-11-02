@@ -1,5 +1,6 @@
 import { Component } from 'react';
 
+import Cv from './components/cv/cv.components';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,6 +16,7 @@ class App extends Component {
 
   textEntered = (event) => {
     const name = event.target.value;
+    console.log({name})
     this.setState(() => {
       return { name };
     })
@@ -23,7 +25,7 @@ class App extends Component {
   onSubmit = () => {
     console.log(this.state.submitted);
     this.setState(() => {
-      if (!this.state.submitted) {
+      if (this.state.name.length > 0 && !this.state.submitted) {
         return {submitted: true};
       }
     })
@@ -48,7 +50,7 @@ class App extends Component {
     return (
      <div>
       <div>
-        {this.state.submitted ? <h1>{ this.state.name }</h1> : <p>Name: <input type='text' placeholder='Enter Name' onChange={textEntered} /></p>}
+        {this.state.submitted ? <h1>{ this.state.name }</h1> : <Cv placeholder='Enter Name' onChangeHandler={textEntered} value={this.state.name.length > 0 ? this.state.name : ''} />}
       </div>
       <div>
         <button className="submit-button" onClick={onSubmit} >Submit</button>
