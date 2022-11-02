@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       name: '',
       email: '',
+      phone: '',
       submitted: false,
     }
   };
@@ -31,10 +32,18 @@ class App extends Component {
     })
   };
 
+  numberEntered = (event) => {
+    const phone = event.target.value;
+    console.log({phone});
+    this.setState(() => {
+      return { phone };
+    })
+  };
+
   onSubmit = () => {
     console.log(this.state.submitted);
     this.setState(() => {
-      if (this.state.name.length > 0 && !this.state.submitted) {
+      if (this.state.name.length > 0 && this.state.phone.length === 10 && this.state.email.length > 0 && !this.state.submitted) {
         return {submitted: true};
       }
     })
@@ -51,8 +60,7 @@ class App extends Component {
 
   
   render () {
-    const {nameEntered} = this;
-    const {emailEntered} = this;
+    const {nameEntered, emailEntered, numberEntered} = this;
     const {onSubmit} = this;
     const {onEdit} = this;
     
@@ -60,7 +68,7 @@ class App extends Component {
     return (
      <div>
       <div>
-        {this.state.submitted ? <Preview name={this.state.name} email={this.state.email}  /> : <Cv placeholder='Enter Name' nameChangeHandler={nameEntered} emailChangeHandler={emailEntered} name={this.state.name} email={this.state.email} />}
+        {this.state.submitted ? <Preview name={this.state.name} email={this.state.email} phone={this.state.phone} /> : <Cv placeholder='Enter Name' nameChangeHandler={nameEntered} emailChangeHandler={emailEntered} numberChangeHandler={numberEntered} name={this.state.name} email={this.state.email} phone={this.state.phone} />}
       </div>
       <div>
         <button className="submit-button" onClick={onSubmit} >Submit</button>
