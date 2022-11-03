@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class Preview extends Component {
     render() {
-        const { name, email, phone, school, major, dateStudy } = this.props;
+        const { name, email, phone, school, major, dateStudy, company, position, mainTasks, dateWork } = this.props;
         return(
             <div>
                 <h1> {name} </h1>
@@ -13,10 +13,10 @@ class Preview extends Component {
                 <p>{major}</p> {/*Title of Study */}
                 <p>{dateStudy}</p> {/*Date of Study */}
                 <p>Practical Experience</p>
-                <p>{}</p> {/*Company name */}
-                <p>{}</p> {/*Position */}
-                <p>{}</p> {/*Main Tasks */}
-                <p>{}</p> {/*Date Range */}
+                <p>{company}</p> {/*Company name */}
+                <p>{position}</p> {/*Position */}
+                <p>{mainTasks}</p> {/*Main Tasks */}
+                <p>{dateWork}</p> {/*Date Range */}
             </div>
         )
     }
