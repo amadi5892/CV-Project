@@ -12,6 +12,9 @@ class App extends Component {
       name: '',
       email: '',
       phone: '',
+      school: '',
+      major: '',
+      dateStudy: '',
       submitted: false,
     }
   };
@@ -39,6 +42,30 @@ class App extends Component {
       return { phone };
     })
   };
+  
+  schoolEntered = (event) => {
+    const school = event.target.value;
+    console.log({school})
+    this.setState(() => {
+      return {school};
+    })
+  };
+
+  majorEntered = (event) => {
+    const major = event.target.value;
+    console.log({major})
+    this.setState(() => {
+      return {major};
+    })
+  };
+
+  dateStudyEntered = (event) => {
+    const dateStudy = event.target.value;
+    console.log({dateStudy})
+    this.setState(() => {
+      return {dateStudy};
+    })
+  };
 
   onSubmit = () => {
     console.log(this.state.submitted);
@@ -60,7 +87,7 @@ class App extends Component {
 
   
   render () {
-    const {nameEntered, emailEntered, numberEntered} = this;
+    const {nameEntered, emailEntered, numberEntered, schoolEntered, majorEntered, dateStudyEntered} = this;
     const {onSubmit} = this;
     const {onEdit} = this;
     
@@ -68,7 +95,7 @@ class App extends Component {
     return (
      <div>
       <div>
-        {this.state.submitted ? <Preview name={this.state.name} email={this.state.email} phone={this.state.phone} /> : <Cv placeholder='Enter Name' nameChangeHandler={nameEntered} emailChangeHandler={emailEntered} numberChangeHandler={numberEntered} name={this.state.name} email={this.state.email} phone={this.state.phone} />}
+        {this.state.submitted ? <Preview name={this.state.name} email={this.state.email} phone={this.state.phone} school={this.state.school} major={this.state.major} dateStudy={this.state.dateStudy} /> : <Cv placeholder='Enter Name' nameChangeHandler={nameEntered} emailChangeHandler={emailEntered} numberChangeHandler={numberEntered} schoolChangeHandler={schoolEntered} majorChangeHandler={majorEntered} dateStudyChangeHandler={dateStudyEntered} name={this.state.name} email={this.state.email} phone={this.state.phone} school={this.state.school} major={this.state.major} dateStudy={this.state.dateStudy} />}
       </div>
       <div>
         <button className="submit-button" onClick={onSubmit} >Submit</button>
